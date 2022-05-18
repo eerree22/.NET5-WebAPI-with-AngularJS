@@ -1,0 +1,28 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="paymentDetailsId" [value]="service.formData.paymentDetailsId" />
+    <div class="form-group">
+        <label>持卡人姓名</label>
+        <input type="text" class="form-control form-control-lg" placeholder="中文姓名" name="cardOwnerName" 
+        #cardOwnerName="ngModel" [(ngModel)]="service.formData.cardOwnerName" required [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched">
+    </div>
+    <div class="form-group">
+        <label>卡號</label>
+        <input type="text" class="form-control form-control-lg" placeholder="16碼卡號" name="cardNumber" 
+        #cardNumber="ngModel" [(ngModel)]="service.formData.cardNumber" required maxlength="16" minlength="16" [class.invalid]="cardNumber.invalid && cardNumber.touched">
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>到期日</label>
+            <input type="text" class="form-control form-control-lg" placeholder="月/年" name="expirationDate" 
+            #expirationDate="ngModel" [(ngModel)]="service.formData.expirationDate" required maxlength="5" minlength="5" [class.invalid]="expirationDate.invalid && expirationDate.touched">
+        </div>
+        <div class="form-group col">
+            <label>安全碼</label>
+            <input type="text" class="form-control form-control-lg" placeholder="三碼" name="securityCode" 
+            #securityCode="ngModel" [(ngModel)]="service.formData.securityCode" required maxlength="3" minlength="3" [class.invalid]="securityCode.invalid && securityCode.touched">
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">完成</button>
+    </div>
+</form>
